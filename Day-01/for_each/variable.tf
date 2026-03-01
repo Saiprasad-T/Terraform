@@ -1,7 +1,16 @@
 variable "instances" {
-    default = ["mongodb","mysqld","redis"]
-    type = list
+ default = {
+    mongodb = "t3.micro"
+    redis = "t3.small"
+    frontend = "t3.micro"
+ }
 }
+
+variable "Env" {
+  type        = string
+  default     = "dev"
+}
+
 
 variable "Zone_id" {
   type        = string
@@ -15,9 +24,9 @@ variable "Domain" {
   description = "Domain"
 }
 
-variable "Env" {
+variable env {
   type        = string
-  default     = "Dev"
-  description = "environment"
-} 
+  default     = "dev"
+  description = "description"
+}
 

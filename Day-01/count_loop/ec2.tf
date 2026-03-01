@@ -1,11 +1,10 @@
 resource "aws_instance" "example" {
   count = 3
-  ami           = "ami-0220d79f3f480ecf5"
-  instance_type = "t3.micro"
+  ami           = data.aws_ami.example.id
+  instance_type = var.Env == "Dev" ? "t3.micro" : "t2.micro"
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
-
   tags = {
-    Name = var.instances[count.index]
+    Name = "${var.instances[count.index]}-${var.Env}"
     Project = "Roboshop"
     Env = "Dev"
   }
